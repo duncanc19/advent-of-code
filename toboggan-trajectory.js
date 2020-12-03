@@ -37,13 +37,14 @@ function mapTobogganRouteAndCountTreesHit(mapArray, movesRight, movesDown) {
 }
 
 const lines = convertMapTextToArray('./map.txt');
-// const entireMapArray = makeMapRequiredWidth(lines, 3, 1);
-// const treesHit = countTreesHit(entireMapArray, 3, 1);
-const route1 = mapTobogganRouteAndCountTreesHit(lines, 1, 1);
-const route2 = mapTobogganRouteAndCountTreesHit(lines, 3, 1);
-const route3 = mapTobogganRouteAndCountTreesHit(lines, 5, 1);
-const route4 = mapTobogganRouteAndCountTreesHit(lines, 7, 1);
-const route5 = mapTobogganRouteAndCountTreesHit(lines, 1, 2);
 
-const multiplied = route1 * route2 * route3 * route4 * route5;
+const routes = [
+    [1,1], [3,1], [5,1], [7,1], [1,2]
+]
+
+let multiplied = 1;
+routes.forEach(route => {
+    multiplied *= mapTobogganRouteAndCountTreesHit(lines, route[0], route[1]);
+})
+
 console.log(multiplied);
